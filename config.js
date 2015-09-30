@@ -1,0 +1,1 @@
+orion.config.add('GTM_CONTAINER_ID', 'GTM', { public: true });
