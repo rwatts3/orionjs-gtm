@@ -3,10 +3,10 @@
 </body>
 
 <template name="GTM">
+	<script>
+		{{getDataLayer}} = [];
+	</script>
 	{{#if gtmIsDefined}}	
-		<script>
-			{{getDataLayer}} = [];
-		</script>
 		<!-- Google Tag Manager -->
 		<noscript><iframe src="//www.googletagmanager.com/ns.html?id={{getGTMId}}"
 		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

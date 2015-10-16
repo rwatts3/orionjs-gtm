@@ -5,7 +5,7 @@ Meteor.startup(function () {
            return orion.config.get('GTM_CONTAINER_ID');
       },
       gtmIsDefined: function () {
-          return typeof orion.config.get('GTM_CONTAINER_ID') !== 'undefined'|| '';
+          return !orion.config.get('GTM_CONTAINER_ID') === '';
       },
 	  getDataLayer: function () {
 		  return orion.config.get('GTM_DATALAYER', 'dataLayer');
@@ -25,7 +25,8 @@ if (Meteor.isClient) {
 	//Manually Push Page Views
 	Router.configure({
 		onRun: function () {
-			var dataLayer = window[orion.config.get('GTM_DATALAYER')];
+			var dl = orion.config.get('GTM_DATALAYER', 'dataLayer');
+			var dataLayer = window[dl];
 			dataLayer.push({
 				'event': 'VirtualPageView',
 				'virtualPageUrl': window.location.pathname,

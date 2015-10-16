@@ -1,7 +1,7 @@
 Package.describe({
   name: 'rwatts:orionjs-gtm',
   summary: 'Google Tag Manager using Orion config.',
-  version: '0.0.2',
+  version: '0.0.4',
   git: 'https://github.com/rwatts3/orionjs-gtm'
 });
 
