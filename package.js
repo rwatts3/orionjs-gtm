@@ -1,7 +1,7 @@
 Package.describe({
   name: 'rwatts:orionjs-gtm',
   summary: 'Google Tag Manager using Orion config.',
-  version: '0.0.1',
+  version: '0.0.2',
   git: 'https://github.com/rwatts3/orionjs-gtm'
 });
 
@@ -9,7 +9,8 @@ Package.onUse(function(api) {
   api.versionsFrom('1.2.0.2');
 
   api.use([
-      'meteor-platform', 
+      'meteor-platform',
+	  'iron:router@1.0.12', 
       'orionjs:config@1.5.0'
   ]);
   

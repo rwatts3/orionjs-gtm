@@ -12,25 +12,35 @@ To handle single page applications or url fragments such as `mydomain.com/#hello
 
 ## Instructions
 1. Add your `GTM Container ID` via the admin panel under the `config` tab.
-2. Add your tags in google tag manager.
+2. Set the dataLayer in the admin panel under the `config` tab. Don't worry this setting is reactive so all your events will be pushed to the dataLayer you define here. If you do not define a dataLayer variable it will default to `dataLayer`
+3. Head to Google Tag Manager and Create the dataLayer Variables
+	- Data Layer Variable:  **virtualPageUrl**
+	- Data Layer Variable: **virtualPageTitle**
+4. Create a trigger with the following settings.
+	- Name : Virtual Page View Trigger
+	- Choose Event : Custom Event
+	- Fire On : **VirtualPageView** *must be exact*
+	- Filters : Event `equals` VirtualPageView
+5. Create a new GA Tag
+	- Product: Google Analytics
+	- Tag Type : Universal Analytics
+	- Configure Tag
+		- Tag Type : Universal Analytics
+		- Tracking ID : **UA-XXXXXXXX**
+		- Track Type : Page View
+		- Fields to Set
+			- page : `{{virtualPageUrl}}`
+			- title : `{{virtualPageTitle}}`
+	- Fire On
+		- More : **Virtual Page View Trigger**
 
-## Single Page Instructions
-The purpose of Google Tag Manager is having the ability to plug tag manager into your application and easily integrate your tracking or tags. 
-
-Rather than dealing with `iron-router` logic to track page views the simplest solution for single page applications is to monitor the history state of the url. 
-
-1. Setup your standard PageView tag using the `uaid` for your google analytics account.
-2. Instead of firing PageView on `All Pages` we will create a trigger called `pageView`.
-3. Set the event type to `History Change` instead of `Page View`. This will always happen even if you navigate to a hash on the same page or change the view of your application.
-4. In your PageView tag add a `Fields to Set` property with `Field Name` location and `Value` `{{fullPagePath}}`. I know we haven't created this variable yet.
-5. Select New Variable and create a Custom Javascript Function that returns the following. 
-```js
-function () {
-	return window.location.href;
-}
-```
-
-This will grab the actual location of the current view even though the page doesn't reload.
-6. Save and publish your container.
+## Change Log
+- v0.0.2
+	- Fixed nasty bug where the GTM container was duplicated upon every route. Do not use History for page views, as it reloads the container on each page view.
+	- Added virtual page views directly to each route. pushes the following event to the data layer.
+	- Added the ability to set the dataLayer via the config section of Orion.
+- v0.0.1
+	- Initial Beta Release
+	- Added property to Orion Config enabling user to set GTM Container ID.
 
 > This package was created by Orion Core Contributor Ryan Watts (rwatts)

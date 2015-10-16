@@ -6,7 +6,10 @@ Meteor.startup(function () {
       },
       gtmIsDefined: function () {
           return typeof orion.config.get('GTM_CONTAINER_ID') !== 'undefined'|| '';
-      }
+      },
+	  getDataLayer: function () {
+		  return orion.config.get('GTM_DATALAYER', 'dataLayer');
+	  }
   }); 
     
   if(Meteor.isServer){
@@ -17,4 +20,19 @@ Meteor.startup(function () {
       BrowserPolicy.content.allowEval();
   }
 });
+
+if (Meteor.isClient) {
+	//Manually Push Page Views
+	Router.configure({
+		onRun: function () {
+			var dataLayer = window[orion.config.get('GTM_DATALAYER')];
+			dataLayer.push({
+				'event': 'VirtualPageView',
+				'virtualPageUrl': window.location.pathname,
+				'virtualPageTitle': document.title
+			});
+			this.next();
+		}
+	});
+}
 
