@@ -4,9 +4,10 @@ Meteor.startup(function () {
       getGTMId: function(){ 
            return orion.config.get('GTM_CONTAINER_ID');
       },
-      gtmIsDefined: function () {
-          return !orion.config.get('GTM_CONTAINER_ID') === '';
-      },
+    //TODO need to refactor this better.
+	//   gtmIsDefined: function () {
+    //       return !orion.config.get('GTM_CONTAINER_ID') === '';
+    //   },
 	  getDataLayer: function () {
 		  return orion.config.get('GTM_DATALAYER', 'dataLayer');
 	  }
