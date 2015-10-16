@@ -2,7 +2,7 @@ Package.describe({
   name: 'rwatts:orionjs-gtm',
   summary: 'Google Tag Manager using Orion config.',
   version: '0.0.4',
-  git: 'https://gitlab.com/rwatts-meteor-packages/orionjs-gtm/'
+  git: 'https://github.com/rwatts3/orionjs-gtm'
 });
 
 Package.onUse(function(api) {

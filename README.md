@@ -1,6 +1,6 @@
 # Orionjs Google Tag Manager
 
-[![](https://img.shields.io/badge/Repository-Gitlab-orange.svg)](https://gitlab.com/rwatts-meteor-packages/orionjs-gtm) ![](https://img.shields.io/badge/Version-0.0.4-red.svg) ![](https://img.shields.io/badge/License-MIT-blue.svg)   
+![](https://img.shields.io/github/issues/rwatts3/orionjs-gtm.svg)![](https://img.shields.io/badge/Version-0.0.4-red.svg) ![](https://img.shields.io/badge/License-MIT-blue.svg)
 
 Adds Google Tag Manager to Orionjs using the config settings.
 
